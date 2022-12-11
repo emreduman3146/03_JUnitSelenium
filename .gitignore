@@ -1,4 +1,6 @@
 .idea
 .jython_cache
-target*.iml
+target
+*.iml
 out
+

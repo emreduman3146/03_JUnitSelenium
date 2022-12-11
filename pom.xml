@@ -71,6 +71,16 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
             <scope>test</scope>
         </dependency>
 
+        <!-- JUNIT4 ile compatibility i saglayan kutuphanedir -->
+        <!-- https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.9.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
         <!--junit-platform-suite: The @Suite support provided by this module to make the JUnitPlatform runner obsolete.-->
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -91,35 +101,19 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
       <build>
         <plugins>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-        </plugins>
-    </build>
-
-    <!--
-    <build>
-        <plugins>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>1.2.0</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>src/test/java/</additionalClasspathElement>
-                    </additionalClasspathElements>
-                </configuration>
+                <version>3.0.0-M7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
             </plugin>
         </plugins>
     </build>
@@ -129,9 +123,11 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>3.0.0-M7</version>
             </plugin>
         </plugins>
     </reporting>
- -->
+
+    <!-- mvn surefire-report:report -->
+
 </project>

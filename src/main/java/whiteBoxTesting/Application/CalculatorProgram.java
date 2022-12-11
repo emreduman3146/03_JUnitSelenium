@@ -48,7 +48,8 @@ public class CalculatorProgram
     }
 
     //unit
-    public static double multiply(double... operands) {
+    public static double multiply(double... operands)// Double[] array=[1,2,3,4];
+    {
         return DoubleStream.of(operands)
                 .reduce(1, (a, b) -> a * b);
     }
@@ -56,9 +57,10 @@ public class CalculatorProgram
 
 
     //Parent'i Number olan tum classlar parametre olarak gonderilebilirler
-    //Mesela-> Integer, Double, Long, Short, Long, Byte tipinde veri kabul eder bu
-    protected boolean isEven(Number number)
+    //Mesela-> Integer, Double, Long, Short, Byte tipinde veri kabul eder, Bu classlarin da parent'tidir
+    protected boolean isEven(Number number)//even=cift sayi demek
     {
+        //local variable, methodun variable i
         boolean result=true;
 
         if(number instanceof Integer && (int)(number)%2==0)
@@ -74,12 +76,12 @@ public class CalculatorProgram
         else if(number instanceof Float && (double)(number)%2==0)
             return result;
         else
-            return !result;
+            return !result;//true false
 
     }
 
 
-    public static int[] ebob_ekok_bulma(int n1, int n2)
+    public static int[] ebob_ekok_bulma(int n1, int n2)//6,8 2,24
     {
         int ebob,ekok,kalan,bolunen,bolen;
 
@@ -106,7 +108,7 @@ public class CalculatorProgram
         //System.out.println(n1+" ve "+n2+" bu sayıların EBOB'u = "+ebob);
         //System.out.println(n1+" ve "+n2+" bu sayıların EKOK'u = "+ekok);
 
-        int[] ebob_ekok_sonuclari={ebob,ekok};
+        int[] ebob_ekok_sonuclari={ebob,ekok};//ebob:2   ekok:24
         return ebob_ekok_sonuclari;
 
 
