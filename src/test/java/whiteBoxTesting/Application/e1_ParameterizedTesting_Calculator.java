@@ -1,6 +1,7 @@
 package whiteBoxTesting.Application;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -16,7 +17,8 @@ public class e1_ParameterizedTesting_Calculator
 
 
     @ParameterizedTest//TestDatasi kabul eden @Test demektir
-    @ValueSource(ints = {1,2,3,4,5,6,7,8,9})//testdata kendisidir
+    @ValueSource(ints = {1,2})//testdata kendisidir
+    @Tag("isEven_Int")
     //List<Integer> intList= new Arraylist<>();
     //9 parametremiz tet methodumuzu 9 defa calsitirir
     //Her calismada 1 sonraki testdata kullanilir
@@ -36,6 +38,7 @@ public class e1_ParameterizedTesting_Calculator
     }
 
 
+    //JAVA'DAKI OVERLOADING OZELLIGI VAR
     @ParameterizedTest
     @ValueSource(doubles = {1.0,2.0,3.0,4.0,5,6,7,8,9})
     public void testDigitIfItIsEven_viaParameterizedTest(double i)

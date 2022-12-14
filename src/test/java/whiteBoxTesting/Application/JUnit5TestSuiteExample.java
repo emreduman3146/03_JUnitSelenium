@@ -17,15 +17,15 @@ import org.junit.platform.suite.api.*;
 
 
 
-@SelectClasses( {d_EmployeeTest_PerClass.class} )//package pathini verdigim classlardan hangisi calsiitmak istiyorsam adini yazarim
+//@SelectClasses( {d_EmployeeTest_PerClass.class} )//package pathini verdigim classlardan hangisi calsiitmak istiyorsam adini yazarim
 
 //Yukaridaki @SelectClasses tagi bizden test class isimleri girmemeizi ister
 //@IncludeClassNamePatterns tagi ise, girecegimiz parametre yi kolaylastirir
 //mesela sonu ".....Testing" ile biten tum testclasslarini include etmek icin asagidaki kodu kullaniriz
-//@IncludeClassNamePatterns({"^.*Test$"})
+@IncludeClassNamePatterns({"^.*Enum$"})
 
 //bu tag ise basi "e" ile baslayan test classlarini exclude eder, bu classslardaki @Testler run edilmeyecek
-@ExcludeClassNamePatterns({"^.*Test?$"})
+//@ExcludeClassNamePatterns({"^.*Test?$"})
 
 
 

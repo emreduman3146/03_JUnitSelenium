@@ -1,6 +1,7 @@
 package whiteBoxTesting.Application;
 
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -14,6 +15,8 @@ public class i_JUnit_ParallelTesting
     //Paralel testingte ise ayni anda run edilmeye baslarlar.
 
 
+    @Tag("tag1")
+    @Tag("tag2")
     @Test
     public void first() throws Exception{
         System.out.println("FirstParallelUnitTest first() start => " + Thread.currentThread().getName());

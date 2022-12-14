@@ -34,6 +34,8 @@ static bellek
         "**/*TestCase.java" - includes all of its subdirectories and all Java filenames that end with "TestCase".
 
 
+
+
 2->mvn clean surefire-report:report
     clean-> daha onceki turuncu target doyasini sil
     surefire pluginin icindeki configuration'a gore run eder
@@ -41,14 +43,16 @@ static bellek
 
 
 3->mvn clean -Dtest=a_CalculatorTest test
+ ->mvn clean -Dtest=a_CalculatorTest,b_EmployeeTest test
     daha onceki turuncu target doyasini sil
     surefire pluginin icindeki ayarlari cigner,yok sayar ve bu komuttaki emiri yapar
     -D parametre demektir
     parametermiz bir tane class adidir
     sadece ve sadece bu classin icindeki testler run edilir
+    birden fazla classs ismi yazilabilir
 
 
-4->mvn clean surefire-report:report -Dtest= test
+4->mvn clean surefire-report:report -Dtest=a_CalculatorTest test
     daha onceki turuncu target doyasini sil
     surefire pluginin icindeki ayarlari ez
      ama surefire pluginin html report olusturma ozelligini kullan
@@ -79,7 +83,8 @@ static bellek
    + kullanarak istedigimiz kadar method adi ekleyebilriz
 
 
-10->mvn -Dsurefire.rerunFailingTestsCount=3 test
+
+10->mvn -Dsurefire.rerunFailingTestsCount=2 test
     bu command ile surefire'daki testleri run ederiz
     olur da fail alirsak tekrar tekrar run etmeye devam etsin
     tekrarin bir uplimitini koyadabiliyoruz
@@ -92,10 +97,18 @@ static bellek
     surefire pluginin html report olusturma ozelligini kullan
     maven test fail olursa 2, kez bir daha run et
 
+
+11.5->mvn clean surefire-report:report  -Dsurefire.rerunFailingTestsCount=2 -Dtest=e1*#testDigitIfItIsEven_viaParameterizedTest
+11.5->mvn clean surefire-report:report  -Dsurefire.rerunFailingTestsCount=2 -Dtest=e1*#testDigitIfItIsEven*
+11.5->mvn clean surefire-report:report  -Dsurefire.rerunFailingTestsCount=2 -Dtest=e1*#testDigitIfItIsEven* -Dgroup=isEven_Int
+11.5->mvn clean surefire-report:report  -Dsurefire.rerunFailingTestsCount=2 -Dtest=e1* -Dgroup=isEven_Int
+
+
+
 12->mvn install -DskipTests
    pom.xml'de testleri skip etmek icin kod yazmak istemiyoruz
    sadece run ederken anlik parametre vermek istiyoruz
-   bunun icin 12. commandi yazariz
+   MVN
    biz mvn install commandini ogrenmistik
    odev2'yi yaparken bu commandi kullandik
    mvn install= projenin mavi java ve yesil java folderlarindaki kodlari compile et
@@ -103,6 +116,7 @@ static bellek
                 .m2 reposuna bu projeyi dependecy olarak ekle demektir.
   Bu islemleri yaparken testlerin ignored/skipped edilmesini istiyorsak
   12. commandi yazariz
+
 
 13->mvn install -Dmaven.test.skip=true
   12. command ile ayni isi yapmaktadir
@@ -122,6 +136,10 @@ NOT-> ALLURE REPORT TAMAMEN BAGIMSIZ BIR OZELLIKTIR
       Allure report testNG ile de calisir
       Cucumber ile de calisir
       Appium ile de calisir
+
+
+
+
 
 
 16->mvn -Dgroups="tagName1, tagName2,..."

@@ -105,27 +105,6 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
         </dependency>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!-- bu dependecy olmasaydi, bir alttaki alliure report dependency'si JUnitTestSuiteClass larimzin calismasini engelliyordu
         simdi ie bu dependecy sayseinde hem allure report'u hem testSuite i frameorkumuzde kullanabiliyoruz-->
         <dependency>
@@ -135,7 +114,7 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
         </dependency>
 
 
-
+<!-- ALLURE REPORT OLUSTURABILMEMIZI SAGLAR-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
@@ -150,9 +129,9 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
      Maven'in kodlarimizi compile etmesini ardindan da projectimzi build etmesini istersek
      asagidaki ifadeleri yazmaliyiz-->
 
-      <build>
+      <build><!-- projemizi build ederken ihtiyac duydugumuz pluginleri koydugumuz yerdir-->
         <plugins>
-            <!-- JUNIT testlerini surefire plugin sayesinde run ederiz
+            <!-- JUNIT testlerini surefire plugin sayesinde maven ile run ederiz
             olusan surefire html report "/target/surefire-reports/" pathine olusur.-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -173,24 +152,24 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
                    <!-- <test>whiteBoxTesting.Application.a_CalculatorTest</test> -->
 
 
-                    <!-- terminalde mvn .... command ile run etmek istedigimiz classlardir -->
+                    <!-- terminalde mvn .... command ile run etmek istedigimiz classlardir ->
                     <includes>
 
-                       <!-- packageName/packageName/className.java   kullanimi yoktur
+                       <!- packageName/packageName/className.java   kullanimi yoktur
                        <include>WhiteBoxTesting.Application.a_CalculatorTest.java</include>
                        -->
 
-                        <!-- ? isareti 1 karakter demektir-->
+                        <!-- ? isareti 1 karakter demektir->
                         <include>**/*Test*.java</include>
 
                     </includes>
 
-                    <!-- terminalde mvn .... command ile run etmek isteMEDIGIMIZ classlardir -->
+                    <!- terminalde mvn .... command ile run etmek isteMEDIGIMIZ classlardir ->
                     <excludes>
                         <exclude>**/e1*.java</exclude>
-                        <!--<exclude>**/*TestSuite*.java</exclude> -->
+                        <!-<exclude>**/*TestSuite*.java</exclude> ->
                     </excludes>
-
+-->
 
                     <!-- tagler yardimiyla @Testleri run edecksek direk alternative kullanimlari commentlemeliyiz -->
                     <!-- include tags, @Test lere @Tag veririz, o tag isimlerini buraya yazarsak onlar calisir->
@@ -201,7 +180,6 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
                     <!- exclude tags ->
                     <excludedGroups>getCssValue</excludedGroups>
 -->
-
 
                 </configuration>
             </plugin>
@@ -223,7 +201,18 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
 
 
         </plugins>
-    </build>
+      </build>
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- mvn build tool araciligi ile run ettignimiz testlerin html reportunu almamizi saglar-->
     <reporting>
