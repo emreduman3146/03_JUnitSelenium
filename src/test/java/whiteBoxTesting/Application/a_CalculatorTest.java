@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import whiteBoxTesting.Application.CalculatorProgram;
 
 import static whiteBoxTesting.Application.CalculatorProgram.add;
 import static whiteBoxTesting.Application.CalculatorProgram.multiply;
@@ -111,6 +112,7 @@ public class a_CalculatorTest
         Assertions.assertEquals(add(1,2,3,4,-5),5);
     }
 
+
     @Test
     //display= gostermek
     @DisplayName("Adding all given numbers_ for negative scenario..........")
@@ -124,7 +126,7 @@ public class a_CalculatorTest
 
 
 
-
+    @Tag("addMethodu")
     @Test
     @DisplayName("Multiply all given numbers_positive")
     public void multiply_positiveScenarioTest(TestInfo testInfo)
@@ -146,10 +148,9 @@ public class a_CalculatorTest
     }
 
 
-
+    @Tag("multiplyMethodu")//bu testin calistirilmasi/run edilmesinde kullanilan tag'dir
     @Test
     @DisplayName("Multiply all given numbers_negative")
-    @Tag("UnitTest")//whiteBoxTesting 'in alt category si olan unitTest yaptigimizi resmilestirmek icin bu tagi koyariz
     //Developerlarin yapmak zorunda oldugu testler-> unitTesting<integrationTesting<systemSystem<userAcceptanceTesting
     public void multiply_negativeTest(TestInfo testInfo)
     {

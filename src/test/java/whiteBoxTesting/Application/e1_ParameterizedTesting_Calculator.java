@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
+import org.openqa.selenium.remote.tracing.Status;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,6 +82,21 @@ public class e1_ParameterizedTesting_Calculator
         assertEquals(i3,ebob_ekok_result_array[0]);
         assertEquals(i4,ebob_ekok_result_array[1]);
 
+    }
+
+
+
+    @ParameterizedTest
+    @CsvSource(value =
+                        {"NULL",
+                        " abc",
+                         "def"
+                        }
+     , nullValues = "NULL")
+    void customNullArgument(String title)
+    {
+        System.out.println(title);
+        assertNull(title);
     }
 
 

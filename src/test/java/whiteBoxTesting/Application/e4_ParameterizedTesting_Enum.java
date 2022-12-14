@@ -15,29 +15,46 @@ public class e4_ParameterizedTesting_Enum
 
     @ParameterizedTest
     @EnumSource(value = Day.class)
-    void daysOfWeek(Day day) {
+    //BU METHOD 7 KEZ CALISIR
+    void daysOfWeek(Day day)
+    {
         assertNotNull(day);
     }
+
+
+
+
+
 
     @ParameterizedTest
     @EnumSource(value = Day.class, names = {"MONDAY", "TUESDAY"})
-    void daysOfWeek2(Day day) {
+    void daysOfWeek2(Day day)
+    {
         assertNotNull(day);
     }
 
+
+
+
+
     @ParameterizedTest
-    @EnumSource(value = Day.class, mode = EXCLUDE, names = {"MONDAY", "TUESDAY"})
-    void daysOfWeek3(Day day) {
+    @EnumSource(value = Day.class, mode = EXCLUDE, names = {"MONDAY", "FRIDAY"})
+    void daysOfWeek3(Day day)
+    {
         assertNotNull(day);
     }
 
 
     @ParameterizedTest
     @EnumSource(Month.class) // passing all 12 months
-    void getValueForAMonth_IsAlwaysBetweenOneAndTwelve(Month month) {
-        int monthNumber = month.getValue();
+    void getValueForAMonth_IsAlwaysBetweenOneAndTwelve(Month month)
+    {
+        //local variable, method variable
+        int monthNumber = month.getValue();//1,2,3,4,5,6,7,8,9,10,11,12
         assertTrue(monthNumber >= 1 && monthNumber <= 12);
     }
+
+
 
     @ParameterizedTest
     @EnumSource(value = Month.class, names = {"APRIL", "JUNE", "SEPTEMBER", "NOVEMBER"})
@@ -46,15 +63,20 @@ public class e4_ParameterizedTesting_Enum
         assertEquals(30, month.length(isALeapYear));
     }
 
+
+
+
     @ParameterizedTest
     @EnumSource(
-            value = Month.class,
+            value = Month.class,//12 tane testdata'yi kullan
             names = {"APRIL", "JUNE", "SEPTEMBER", "NOVEMBER", "FEBRUARY"},
             mode = EXCLUDE)
     void exceptFourMonths_OthersAre31DaysLong(Month month) {
         final boolean isALeapYear = false;
         assertEquals(31, month.length(isALeapYear));
     }
+
+
 
 
     @ParameterizedTest
@@ -64,5 +86,6 @@ public class e4_ParameterizedTesting_Enum
                 EnumSet.of(Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER);
         assertTrue(months.contains(month));
     }
+
 
 }

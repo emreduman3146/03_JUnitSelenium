@@ -14,10 +14,21 @@ Configure to use Java 11 or higher, as this is required by JUnit5
 Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2.22.2 so that they can run JUnit5
 -->
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <junit.platform.version>1.9.1</junit.platform.version>
+
+
+
+        <!--<skipTests>true</skipTests>-->
+        <allure.version>2.13.0</allure.version>
+        <!--Bu deger, allure report almak icin yazdigimiz pluginde kullanilir -->
+        <allure.cmd.download.url>
+            https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline
+        </allure.cmd.download.url>
+
     </properties>
 
 
@@ -45,7 +56,8 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
         </dependency>
 
 
-        <!-- junit-jupiter-api: It is the main module where all core annotations are located, such as @Test, Lifecycle method annotations and assertions.-->
+        <!--junit-jupiter-engine: It has test engine implementation which is required at runtime to execute the tests.-->
+        <!-- @Testlerin runtime esnasinda(yani yesil oka basildiginda) calismasini/execute edilmesini saglar -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -54,7 +66,8 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
             <!--Bu dependency sadece ve sadece yesil java folder'inin icindeki classlarda kullanilabilir. -->
         </dependency>
 
-        <!--junit-jupiter-engine: It has test engine implementation which is required at runtime to execute the tests.-->
+        <!-- junit-jupiter-api: It is the main module where all core annotations are located, such as @Test, Lifecycle method annotations and assertions.-->
+        <!-- JUNIT5 ANNOTATIONSLARININ GELDIGI DEPENDENCY dir-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -64,6 +77,7 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
 
 
         <!-- junit-jupiter-params: Support for parameterized tests in JUnit 5. -->
+        <!-- junit5'te parametreli testler yazmamizi saglar -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
@@ -71,17 +85,18 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
             <scope>test</scope>
         </dependency>
 
-        <!-- JUNIT4 ile compatibility i saglayan kutuphanedir -->
+        <!-- JUNIT3-4 ile compatibility i saglayan kutuphanedir -->
         <!-- https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine -->
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>5.9.1</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
 
         <!--junit-platform-suite: The @Suite support provided by this module to make the JUnitPlatform runner obsolete.-->
+        <!--JUNIT5 TEST SUITE CLASSININ CALISMASI ICIN GEREKLIDIR -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
@@ -89,6 +104,43 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
             <scope>test</scope>
         </dependency>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- bu dependecy olmasaydi, bir alttaki alliure report dependency'si JUnitTestSuiteClass larimzin calismasini engelliyordu
+        simdi ie bu dependecy sayseinde hem allure report'u hem testSuite i frameorkumuzde kullanabiliyoruz-->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit.platform.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
     </dependencies>
 
@@ -100,34 +152,95 @@ Configure the maven-surefire-plugin and maven-failsafe-plugin to be at version 2
 
       <build>
         <plugins>
+            <!-- JUNIT testlerini surefire plugin sayesinde run ederiz
+            olusan surefire html report "/target/surefire-reports/" pathine olusur.-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M7</version>
+                <configuration>
+
+
+                    <!-- mvn install -Dmaven.test.skip=true commandi ile ayni gorevi gorur-->
+                    <!-- buraya yazildigi an, include-exclude ifadeleri, test ifadeleri devredisi kalir -->
+                    <!--<skipTests>${skipTests}</skipTests>-->
+
+                    <!-- buraya yazildigi an, include-exclude ifadeleri, test ifadeleri devredisi kalir -->
+                    <!--alttaki satir -> mvn clean -Dtest=JUnit5TestSuiteExample test commandi ile ayni isi yapar -->
+                    <!--<test>whiteBoxTesting.Application.JUnit5TestSuiteExample</test>-->
+
+                   <!--alttaki satir -> mvn clean -Dtest=a_CalculatorTest test commandi ile ayni isi yapar -->
+                   <!-- <test>whiteBoxTesting.Application.a_CalculatorTest</test> -->
+
+
+                    <!-- terminalde mvn .... command ile run etmek istedigimiz classlardir -->
+                    <includes>
+
+                       <!-- packageName/packageName/className.java   kullanimi yoktur
+                       <include>WhiteBoxTesting.Application.a_CalculatorTest.java</include>
+                       -->
+
+                        <!-- ? isareti 1 karakter demektir-->
+                        <include>**/*Test*.java</include>
+
+                    </includes>
+
+                    <!-- terminalde mvn .... command ile run etmek isteMEDIGIMIZ classlardir -->
+                    <excludes>
+                        <exclude>**/e1*.java</exclude>
+                        <!--<exclude>**/*TestSuite*.java</exclude> -->
+                    </excludes>
+
+
+                    <!-- tagler yardimiyla @Testleri run edecksek direk alternative kullanimlari commentlemeliyiz -->
+                    <!-- include tags, @Test lere @Tag veririz, o tag isimlerini buraya yazarsak onlar calisir->
+                    <groups>getText|getAttribute</groups>
+                    <groups>getText&getAttribute</groups>
+                    <groups>getText,getAttribute</groups>
+
+                    <!- exclude tags ->
+                    <excludedGroups>getCssValue</excludedGroups>
+-->
+
+
+                </configuration>
             </plugin>
+
+
+
+            <!-- bu plugin allure dependency ile beraber calisir ve allure JUnit report olusturur-->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <allureDownloadUrl>
+                        ${allure.cmd.download.url}/${allure.version}/allure-commandline-${allure.version}.zip
+                    </allureDownloadUrl>
+                </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
-            </plugin>
+
+
         </plugins>
     </build>
 
+    <!-- mvn build tool araciligi ile run ettignimiz testlerin html reportunu almamizi saglar-->
     <reporting>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>3.0.0-M7</version>
+                <configuration>
+                    <!-- <showSuccess>false</showSuccess> false: sadece fail olan testleri goster -->
+                    <showSuccess>true</showSuccess><!--true: pass/fail olan testleri goster -->
+
+                    <outputName>JUnit-Examples-Test-Report</outputName><!-- html reportun basligi -->
+
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
-
-    <!-- mvn surefire-report:report -->
 
 </project>

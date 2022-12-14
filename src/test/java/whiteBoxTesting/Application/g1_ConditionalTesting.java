@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.*;
 
-public class g_ConditionalTesting
+public class g1_ConditionalTesting
 {
+
     @Test
     @EnabledOnOs(value = {OS.WINDOWS, OS.MAC})
     public void enableThisTestMethod_ForWindowsAndMacPC()
@@ -15,6 +16,7 @@ public class g_ConditionalTesting
                 "bir UI Automation kodu/testi yazdik" +
                 "ve bu testin sadece belli OS lerde calismasini saglayabiliriz");
     }
+
 
 
     @Test
@@ -35,10 +37,11 @@ public class g_ConditionalTesting
 
 
     @Test
-    @DisabledForJreRange(min = JRE.JAVA_8, max= JRE.JAVA_11)
+    @DisabledForJreRange(min = JRE.JAVA_8, max= JRE.JAVA_11)//
     public void disableThisTestMethod_ForJava19()
     {
         System.out.println("Bu test methodu java 8-11 arasi versionlarda calismaz");
     }
+
 
 }

@@ -4,12 +4,20 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class e5_ParameterizedTesting_Method
 {
+
+    public static Stream<Integer> testdataProviderMethod(){
+        Stream<Integer> stream01=Stream.of(2,4,6,8,0);
+        return stream01;
+    }
+
+
 
     @ParameterizedTest
     @MethodSource("testdataProviderMethod")
@@ -18,11 +26,10 @@ public class e5_ParameterizedTesting_Method
         assertTrue(cal.isEven(digit));
     }
 
-    public static Stream<Integer> testdataProviderMethod(){
 
-        Stream<Integer> stream01=Stream.of(1,2,3,4,5,6,7,8,9,0);
-        return stream01;
-    }
+
+
+
 
 
     @ParameterizedTest
