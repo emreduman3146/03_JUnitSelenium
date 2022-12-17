@@ -40,7 +40,7 @@ public class e1_ParameterizedTesting_Calculator
 
     //JAVA'DAKI OVERLOADING OZELLIGI VAR
     @ParameterizedTest
-    @ValueSource(doubles = {1.0,2.0,3.0,4.0,5,6,7,8,9})
+    @ValueSource(doubles = {1.0,2.0})
     public void testDigitIfItIsEven_viaParameterizedTest(double i)
     {
         CalculatorProgram cal=new CalculatorProgram();
