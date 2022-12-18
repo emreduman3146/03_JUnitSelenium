@@ -1,4 +1,4 @@
-package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.c_waits;
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.c_waits.conditionalWaits;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -16,8 +16,9 @@ import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driv
 import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driver.Driver.setDriver;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class c_FluentWait
+public class d_FluentWait
 {
+
 
     @BeforeEach
     void before()
@@ -31,24 +32,34 @@ public class c_FluentWait
     }
 
     @RepeatedTest(5)
-    public void test01() throws InterruptedException
+    public void _fluentWait() throws InterruptedException
     {
 
         //ANA AYARLAR
+
+        //JAVA BILGISI: POLIMORPHISM VAR
+        //Parent:Wait  child:FluentWait
         Wait wait = new FluentWait(getDriver())
-                .withTimeout(Duration.ofMillis(5000))//5 seconds
-                .pollingEvery(Duration.ofMillis(500))//half seconds
-                .ignoring(Exception.class);
+                .withTimeout(Duration.ofMillis(5000))//max 5 seconds beklet driveri
+                .pollingEvery(Duration.ofMillis(500))//Bu 5 saniye icinde de tolamda 10 tekrar yap
+                .ignoring(Exception.class)//ne tur hata cikarsa ciksin, Exception bunlrin babasidir, yabni o hatayi yakala
+                .withMessage("Fluent wait kullaniyorum");
+
 
 
         //Ayarlarin istedigin webELemente uygulanmasi
-        WebElement username = (WebElement) wait.until(driver ->
-        {
-            return getDriver().findElement(By.name("username"));
-        });
+        WebElement username = (WebElement) wait.until
+        (
+            driver ->
+            {
+                return getDriver().findElement(By.name("username"));
+            }
+
+        );
 
         //WebElement ile action alma
         username.sendKeys("automation@gmail.com");
+
         getDriver().findElement(By.xpath("//*[@name='password']")).sendKeys("automationUItesting");
         getDriver().findElement(By.xpath("//div[text()='Log in']")).click();
 

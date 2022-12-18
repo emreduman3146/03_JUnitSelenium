@@ -1,4 +1,4 @@
-package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.c_waits;
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.c_waits.conditionalWaits;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -10,7 +10,7 @@ import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driv
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class a_ImplicitWait {
+public class b_ImplicitWait {
 
 
     /*
@@ -31,8 +31,9 @@ public class a_ImplicitWait {
 
 
     @RepeatedTest(5)
-    public void test01() throws InterruptedException
+    public void _implicitlyWait() throws InterruptedException
     {
+
         //getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
         getDriver().get("https://www.instagram.com/");
 
@@ -41,7 +42,9 @@ public class a_ImplicitWait {
 
         System.out.println("Navigated to the URL!");
 
-         implicitlyWait(3);//sayfa yuklenmesini de webElementlerin yuklenmesini de bekleyebilir
+
+        //0.05
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
         //W3C protokolunun dili olan JSON Formatindaki kodun chrome gidip action yaptirmasi
         getDriver().findElement(By.name("username")).sendKeys("automation@gmail.com");
@@ -58,10 +61,7 @@ public class a_ImplicitWait {
     }
 
 
-    public void implicitlyWait(int seconds)
-    {
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
-    }
+
 
 
 }

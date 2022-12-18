@@ -1,4 +1,4 @@
-package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.c_waits;
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.c_waits.conditionalWaits;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -12,7 +12,7 @@ import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driv
 import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driver.Driver.setDriver;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class b_WebDriverWait
+public class c_WebDriverWait
 {
 
     @BeforeEach
@@ -28,11 +28,14 @@ public class b_WebDriverWait
     }
 
     @RepeatedTest(5)
-    public void test01() throws InterruptedException
+    public void _webDriverWait() throws InterruptedException
     {
 
         //username textbox gozukene kadar bekle, max 5 sn bekle
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        //wait'i tanimla
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(1));
+
+        //wait'i kullan
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
 
         getDriver().findElement(By.name("username")).sendKeys("automation@gmail.com");
@@ -41,6 +44,7 @@ public class b_WebDriverWait
         //Login button'in clickable olana kadar bekler
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Log in']")));
         getDriver().findElement(By.xpath("//div[text()='Log in']")).click();
+
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("slfErrorAlert")));
         getDriver().findElement(By.id("slfErrorAlert")).isDisplayed();//kirmizi uyari mesaji
