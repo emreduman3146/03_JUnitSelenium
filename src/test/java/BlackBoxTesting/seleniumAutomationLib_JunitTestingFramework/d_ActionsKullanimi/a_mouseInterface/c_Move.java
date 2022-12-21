@@ -1,4 +1,4 @@
-package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.d_ActionsKullanimi.mouseInterface;
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.d_ActionsKullanimi.a_mouseInterface;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,8 @@ public class c_Move
         int getY = gmail.getLocation().getY();
         System.out.println("getY = " + getY);
 
-        actions.moveByOffset(getX+2, getY+2).click();
+        actions.moveByOffset(getX+60, getY+5).click();
+
 
         actions.build().perform();
         // actions.perform();
@@ -62,7 +63,7 @@ public class c_Move
         getDriver().get("https://www.trendyol.com/");
 
 
-        //WAIT
+        //WebDriverWait - WAIT
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         By locator=By.xpath("//div[@class='country-select']//select");
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -74,6 +75,7 @@ public class c_Move
 
         //ACTIONS MOVETOELEMENT()
         WebElement selectButton=getDriver().findElement(By.xpath("//button[text()=\"Select\"]"));
+        //selectButton.click();
         actions.moveToElement(selectButton).click().build().perform();
 
 
@@ -85,14 +87,10 @@ public class c_Move
 
         // actions.moveToElement(oneCikanlar_ilkSecenek);
         actions.moveToElement(oneCikanlar_ilkSecenek,500,0);
-        actions.pause(1000);
-        actions.pause(Duration.ofSeconds(10));
+        actions.pause(1000); //1 saniye
+        actions.pause(Duration.ofSeconds(10));//10 saniye pause ederim
         //takeAScreenhot();
         actions.click().build().perform();
-
-
-
-
 
         /*
         This method is used to move the mouse cursor from the top-left corner of the web element

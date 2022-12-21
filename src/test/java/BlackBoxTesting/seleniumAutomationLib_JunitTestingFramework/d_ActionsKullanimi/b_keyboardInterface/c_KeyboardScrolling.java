@@ -39,6 +39,8 @@ public class c_KeyboardScrolling
         WebElement currentAddress=getDriver().findElement(By.id("currentAddress"));
         currentAddress.sendKeys("Istanbul");
 
+        //actions.sendKeys("\ue015");
+
 
         actions.sendKeys(Keys.PAGE_DOWN,Keys.PAGE_UP,Keys.PAGE_UP,Keys.PAGE_UP).
                 build().

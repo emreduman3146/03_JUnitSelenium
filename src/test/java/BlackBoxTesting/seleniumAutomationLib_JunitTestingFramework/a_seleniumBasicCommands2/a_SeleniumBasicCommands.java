@@ -2,10 +2,7 @@ package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.a_seleniumBa
 
 import BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driver.Driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -20,6 +17,10 @@ import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driv
 //ALLURE REPORT OLUSTURURKEN, ana baslik, alt baslik gibi aciklamalari yonetebiliyoruz bu tagler sayesinde
 //Terminale-> mvn clean test allure:report -Dtest=SeleniumBasicCommands2 yazin+enter tikla
 //mvn allure:serve yaz + enter tikla
+
+
+@Link("https://www.emreduman,com")
+@Severity(SeverityLevel.NORMAL)
 @Epic("Selenium'daki temel methodlari ogrenmeye devam ediyoruz")
 @Feature("BlackBoxTesting yapiyoruz")
 public class a_SeleniumBasicCommands
@@ -31,6 +32,8 @@ public class a_SeleniumBasicCommands
     //Bu block genelde ayarlar yapmak icin kullanilir
     static {
         getDriver().get("https://www.google.com");
+        Allure.step("STEP1->Navigated to Chrome ");
+
     }
 
 
@@ -59,6 +62,8 @@ public class a_SeleniumBasicCommands
         String actualText = signInButton.getText();
         System.out.println(actualText);
         Assertions.assertEquals(expectedText, actualText);
+        Allure.step("STEP2->signInButton Text is asserted");
+
     }
 
 
@@ -66,6 +71,9 @@ public class a_SeleniumBasicCommands
 
 
     @ParameterizedTest
+    @Issue("123")
+    @Step("Step-allure")
+    @TmsLink("test1")
     @Story("webElement01.getAttribute('attributeName'); kullanimi")
     @Description("webElement01.getAttribute(); diyerek html tagin attribute'ini return ederiz")
     @Tag("getAttribute")

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -67,8 +68,8 @@ public class b_DragDrop
         actions.moveToElement(letterA);
         actions.clickAndHold();
         actions.moveToElement(letterD);
-        actions.release();
-        actions.perform();
+        actions.release();//parmagimi sol mouse tusundan cek
+        actions.perform();//yukaridaki tum emirleri perform et
 
 
 
@@ -76,15 +77,23 @@ public class b_DragDrop
 
 
     @Test
-    void _dragAndDrop()
+    void _dragAndDrop()//surukle ve birak
     {
         getDriver().get("https://selenium08.blogspot.com/2020/01/drag-me.html");
 
         WebElement kaydirilanElement = getDriver().findElement(By.id("draggable"));
 
+        actions.dragAndDropBy(kaydirilanElement, 300, 200);
 
-        actions.dragAndDropBy(kaydirilanElement, 0, 20);
-        actions.build().perform();
+        //build() methodu ile istedigim actionalri depoladim
+       // Action actionToBuild= actions.build();
+
+       // actionToBuild.perform();
+
+
+       // actions.build().perform();
+
+        actions.perform();
 
         /*
         The dragAndDrop() method is used to drag an element on to the location of another target element and drop it.

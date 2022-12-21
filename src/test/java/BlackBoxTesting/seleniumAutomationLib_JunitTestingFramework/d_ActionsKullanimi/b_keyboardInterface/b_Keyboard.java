@@ -27,7 +27,7 @@ public class b_Keyboard
 
 
     @Test
-    void _keyDown_keyUp()
+    void _keysChord()
     {
         WebElement fullName = getDriver().findElement(By.id("userName"));
         fullName.sendKeys("Software Developer In Test");
@@ -38,14 +38,24 @@ public class b_Keyboard
         WebElement currentAddress=getDriver().findElement(By.id("currentAddress"));
         currentAddress.sendKeys("Istanbul");
 
+        WebElement permanentAddress=getDriver().findElement(By.id("permanentAddress"));
 
+
+
+/*
         actions.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
         actions.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).build().perform();
         actions.sendKeys(Keys.TAB).build().perform();
         actions.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).build().perform();
+*/
 
+        //Actions classini kullanmadan normal yollarla klavye islemlerini nasil handle edebliriz?
+        //Keys.chord() methodu 1'den fazla klavye komutu alabilir
+        currentAddress.sendKeys(Keys.chord(Keys.CONTROL,"a"));
+        currentAddress.sendKeys(Keys.chord(Keys.CONTROL,"c"));
+        permanentAddress.sendKeys(Keys.chord(Keys.CONTROL,"v"));
 
-        WebElement permanentAddress=getDriver().findElement(By.id("permanentAddress"));
+        //ASSERTION KIYASLAMA-DOGRULAMA
         assertEquals(currentAddress.getAttribute("value"),permanentAddress.getAttribute("value"));
 
 
@@ -55,7 +65,7 @@ public class b_Keyboard
     @AfterAll
     static void tearDown()
     {
-        getDriver().quit();
+        //getDriver().quit();
     }
 
 

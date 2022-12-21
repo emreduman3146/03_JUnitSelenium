@@ -18,7 +18,7 @@ import org.junit.platform.suite.api.*;
 //@ExcludeClassNamePatterns({"^.e*?$"})
 
 
-@IncludeTags({"getText"})
+@IncludeTags({"getAttribute"})
 //@ExcludeTags("getCssValue")
 
 @Suite

@@ -29,9 +29,12 @@ public class a_Keyboard
 
         WebElement searchBox=getDriver().findElement(By.name("q"));
 
+        //searchBox.sendKeys("facebook",".com","     ");
         //Kullanim1
-        actions.sendKeys(searchBox,"facebook").perform();
-        actions.sendKeys(Keys.ENTER).perform();
+        actions.sendKeys(searchBox,"facebook",".com","   ").perform();
+        actions.sendKeys("\ue007").perform();
+       // actions.sendKeys(Keys.ENTER).perform();
+
 
         //Kullanim2
        // actions.sendKeys(searchBox, "facebook",Keys.ENTER).perform();
@@ -57,6 +60,8 @@ public class a_Keyboard
         WebElement currentAddress=getDriver().findElement(By.id("currentAddress"));
         currentAddress.sendKeys("Istanbul");
 
+
+        //WebElementAdi.sendKeys()
         currentAddress.sendKeys(Keys.CONTROL);
         currentAddress.sendKeys("A");
         currentAddress.sendKeys(Keys.CONTROL);
@@ -90,9 +95,9 @@ public class a_Keyboard
 
 
         // Select the Current Address using CTRL + A
-        actions.keyDown(Keys.CONTROL);
-        actions.sendKeys("a");
-        actions.keyUp(Keys.CONTROL);
+        actions.keyDown(Keys.CONTROL);//mac:command
+        actions.sendKeys("a");//ctrl+a
+        actions.keyUp(Keys.CONTROL);//ctrl+a
         actions.build().perform();
 
         // Copy the Current Address using CTRL + C

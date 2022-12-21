@@ -20,7 +20,13 @@ public class Driver
     //java bilgisi private:access modifier
     private Driver() {
         ChromeOptions options=new ChromeOptions();
-        options.addArguments("--start-maximized");
+        options.addArguments(
+                "--start-maximized",
+                "--disable-notifications"//bildirim almak ister misin pop-up'ini otomatik kapatir
+                );
+
+
+
         driver= WebDriverManager.chromedriver().avoidShutdownHook().capabilities(options).create();
     }
 

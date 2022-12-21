@@ -1,4 +1,4 @@
-package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.f_alertHandling;
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.f_switchToKullanimi.alertHandling;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
