@@ -1,0 +1,2 @@
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.h_cookiesHandling;public class UsingCookiesExample {
+}
