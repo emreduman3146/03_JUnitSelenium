@@ -14,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-public class TestPrintToPDF {
+public class TakeScreenSotPutInPDF {
 
     public static void main(String[] args) throws IOException {
 
@@ -30,6 +30,11 @@ public class TestPrintToPDF {
 
         Pdf pdf = ((PrintsPage) driver).print(new PrintOptions());
         Files.write(Paths.get("./selenium.pdf"), OutputType.BYTES.convertFromBase64Png(pdf.getContent()));
+
+        driver.get("https://www.youtube.com/");
+        pdf = ((PrintsPage) driver).print(new PrintOptions());
+        Files.write(Paths.get("./selenium.pdf"), OutputType.BYTES.convertFromBase64Png(pdf.getContent()));
+
 
 
     }

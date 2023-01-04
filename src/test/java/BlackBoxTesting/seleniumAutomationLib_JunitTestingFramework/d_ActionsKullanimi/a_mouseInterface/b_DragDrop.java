@@ -141,6 +141,26 @@ public class b_DragDrop
          */
     }
 
+
+    @Test
+    void _dragAndDropBy2()
+    {
+
+        String URL = "https://jqueryui.com/resources/demos/resizable/default.html";
+        getDriver().get(URL);
+
+        WebElement resizable = getDriver().findElement(By.cssSelector("[style=\"z-index: 90;\"]+div+div"));
+
+        actions.dragAndDropBy(resizable, 200, 150);
+        actions.build().perform();
+
+        /*
+        This method accepts three input parameters: target WebElement that has to be dragged.
+        xOffset is an input parameter that represents the amount of offset to be moved along the x-axis.
+        yOffset is an input parameter that represents the amount of offset to be moved along the y-axis.
+         */
+    }
+
     @AfterAll
     static void tearDown()
     {

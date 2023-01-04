@@ -24,9 +24,6 @@ public class Driver
                 "--start-maximized",
                 "--disable-notifications"//bildirim almak ister misin pop-up'ini otomatik kapatir
                 );
-
-
-
         driver= WebDriverManager.chromedriver().avoidShutdownHook().capabilities(options).create();
     }
 
@@ -38,6 +35,14 @@ public class Driver
         if(driver == null)
             driverClassObje=new Driver();
 
+        return driver;
+    }
+
+
+    //WebDriver driver'i return eden, bu gorevi ustlenen bir getter methodu yazayim
+    static public WebDriver launchBrowserAgain()
+    {
+        driverClassObje=new Driver();
         return driver;
     }
 
