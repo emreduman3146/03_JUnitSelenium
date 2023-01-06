@@ -14,7 +14,7 @@ import static BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.z_driv
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class b_HepsiBurada_cookiesMethods
 {
-     protected static void _getCookies_displayDetails()
+     public static void _getCookies_displayDetails()
     {
         Set<Cookie> cookiesSet=getDriver().manage().getCookies();
         int toplam=0;

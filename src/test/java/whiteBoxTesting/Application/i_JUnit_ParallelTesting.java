@@ -32,5 +32,11 @@ public class i_JUnit_ParallelTesting
     }
 
 
+    @Test
+    public void parallelCrossBrowserTesting()
+    {
+
+    }
+
 }
 
