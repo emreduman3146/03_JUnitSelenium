@@ -1,0 +1,2 @@
+package BlackBoxTesting.seleniumAutomationLib_JunitTestingFramework.p_brokenLinks;public class FindBrokenLinkInTheWebPage {
+}
