@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class JSE_UtilClass_Olusturma {
-
+public class JSE_UtilMethods
+{
     public static String getCurrentURL(WebDriver driver) {
         return (String) ((JavascriptExecutor) driver).executeScript("return window.location.href;");
     }
